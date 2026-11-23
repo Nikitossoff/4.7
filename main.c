@@ -10,6 +10,13 @@ int main()
 
     FILE *inA = fopen("t1_A.txt", "r");
     FILE *inB = fopen("t1_B.txt", "r");
+    if (inA == NULL || inB == NULL) {
+        printf("Ошибка открытия входных файлов!\n");
+        if (inA != NULL) fclose(inA);
+        if (inB != NULL) fclose(inB);
+        return 1;
+    }
+
     int na, ma, nb, mb;
 
     do {
@@ -48,8 +55,8 @@ int main()
     Create(&A, na, ma);
     Create(&B, nb, mb);
 
-    Vvod(inA, &A, na, ma);
-    Vvod(inB, &B, nb, mb);
+    Vvod(inA, A, na, ma);
+    Vvod(inB, B, nb, mb);
 
     int ka = kol_otr(A, na, ma);
     int kb = kol_otr(B, nb, mb);
@@ -57,9 +64,9 @@ int main()
     FILE *out = fopen("output.txt", "w");
 
     fprintf(out, "Исходный массив A:\n");
-    Vivod(out, &A, na, ma);
+    Vivod(out, A, na, ma);
     fprintf(out, "Исходный массив B:\n");
-    Vivod(out, &B, nb, mb);
+    Vivod(out, B, nb, mb);
     fprintf(out, "==================================\n");
 
     if (ka > 0 && kb == 0) {

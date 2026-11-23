@@ -9,19 +9,19 @@ void Create(int ***x, int n, int m) {
     return;
 }
 
-void Vvod(FILE *in, int ***x, int n, int m) {
+void Vvod(FILE *in, int **x, int n, int m) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            fscanf(in, "%i", &(*x)[i][j]);
+            fscanf(in, "%i", &x[i][j]);
         }
     }
     return;
 }
 
-void Vivod(FILE *out, int ***x, int n, int m) {
+void Vivod(FILE *out, int **x, int n, int m) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            fprintf(out, "%4i ", (*x)[i][j]);
+            fprintf(out, "%4i ", x[i][j]);
         }
         fprintf(out, "\n");
     }
