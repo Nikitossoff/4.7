@@ -42,8 +42,8 @@ int main()
     Vvod(inA, A, na);
     Vvod(inB, B, nb);
 
-    int ka = kol_otr(A, na);
-    int kb = kol_otr(B, nb);
+    int fa = est_nad(A, na) || est_pod(A, na);
+    int fb = est_nad(B, nb) || est_pod(B, nb);
 
     FILE *out = fopen("output.txt", "w");
 
@@ -53,19 +53,19 @@ int main()
     Vivod(out, B, nb);
     fprintf(out, "==================================\n");
 
-    if (ka > 0 && kb == 0) {
-        int sa = sum_otr(A, na);
+    if (fa && !fb) {
+        int sa = sum_nad(A, na) + sum_pod(A, na);
         fprintf(out, "Отрицательные элементы вне главной диагонали есть только в A (сумма = %i)\n", sa);
         fprintf(out, "В массиве B таких элементов нет, сравнение невозможно\n");
     }
-    else if (kb > 0 && ka == 0) {
-        int sb = sum_otr(B, nb);
+    else if (fb && !fa) {
+        int sb = sum_nad(B, nb) + sum_pod(B, nb);
         fprintf(out, "Отрицательные элементы вне главной диагонали есть только в B (сумма = %i)\n", sb);
         fprintf(out, "В массиве A таких элементов нет, сравнение невозможно\n");
     }
-    else if (ka > 0 && kb > 0) {
-        int sa = sum_otr(A, na);
-        int sb = sum_otr(B, nb);
+    else if (fa && fb) {
+        int sa = sum_nad(A, na) + sum_pod(A, na);
+        int sb = sum_nad(B, nb) + sum_pod(B, nb);
         fprintf(out, "Сумма отрицательных элементов вне главной диагонали в A = %i\n", sa);
         fprintf(out, "Сумма отрицательных элементов вне главной диагонали в B = %i\n", sb);
 
