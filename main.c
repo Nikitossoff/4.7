@@ -10,12 +10,6 @@ int main()
 
     FILE *inA = fopen("t1_A.txt", "r");
     FILE *inB = fopen("t1_B.txt", "r");
-    if (inA == NULL || inB == NULL) {
-        printf("Ошибка открытия входных файлов!\n");
-        if (inA != NULL) fclose(inA);
-        if (inB != NULL) fclose(inB);
-        return 1;
-    }
 
     int na, nb;
 
@@ -35,7 +29,7 @@ int main()
         }
     } while (nb <= 1 || nb > 100);
 
-    int **A = NULL, **B = NULL;
+    int **A, **B;
     Create(&A, na);
     Create(&B, nb);
 
